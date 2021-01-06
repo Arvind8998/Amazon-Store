@@ -2,21 +2,24 @@ import React from 'react'
 import "./Product.css"
 import { useStateValue } from './StateProvider'
 
-function Product({title,image,price,rating}) {
+function Product({title,image,price,rating,id}) {
     const [{basket}, dispatch] = useStateValue()
     
     const addToBasket = ()=>{
         dispatch({
             type: 'ADD_TO_BASKET',
+            item:{
             title,
             image,
             price,
-            rating
+            rating,
+            id: id + new Date().getTime()
+            }
         })
     }
 
     return (
-        <div className="product">
+        <div id ={title} className="product">
             <div className="product__info">
                 <p>{title}</p>
                 <p className="product__price">
